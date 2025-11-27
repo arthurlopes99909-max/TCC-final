@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Finalizar Compra - J.A.A Company</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body { font-family: Arial, sans-serif; padding:20px; background:#d00606; }
+        .container { max-width:900px; margin:auto; background:#e67d71ee; padding:25px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+        .produto { display:flex; align-items:center; gap:12px; border-bottom:1px solid #ddd; padding:12px 0; }
+        .produto img { width:70px; }
+        .total { font-size:20px; font-weight:bold; text-align:right; margin-top:15px; margin-bottom:20px; }
+        input, select { width:100%; padding:10px; margin:8px 0; border-radius:5px; border:1px solid #aaa; font-size:16px; }
+        button { width:100%; padding:15px; background:#222; color:#fff; border:none; border-radius:5px; cursor:pointer; font-size:16px; }
+        button:hover { background:#444; }
+    </style>
+</head>
+<body>
+
+<h1>Finalizar Compra</h1>
+
+<div class="container">
+    <h2>Resumo do Pedido</h2>
+    <div id="lista-finalizacao"></div>
+
+    <div class="total" id="total-final">Total: R$ 0,00</div>
+
+    <h2>Dados do Cliente</h2>
+    <form id="form-finalizar">
+        <label>Nome Completo</label>
+        <input type="text" id="nome" required>
+
+        <label>Email</label>
+        <input type="email" id="email" required>
+
+        <label>Endereço Completo</label>
+        <input type="text" id="endereco" required>
+
+        <label>Forma de Pagamento</label>
+        <select id="pagamento" required>
+            <option value="">Selecione</option>
+            <option value="cartao">Cartão de Crédito</option>
+            <option value="pix">PIX</option>
+            <option value="boleto">Boleto Bancário</option>
+        </select>
+
+        <button type="submit">Confirmar Compra</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const lista = document.getElementById("lista-finalizacao");
+    const totalFinal = document.getElementById("total-final");
+
+    function formatBRL(valor) {
+        return valor.toFixed(2).replace(".", ",");
+    }
+
+    let total = 0;
+    if (carrinho.length === 0) {
+        lista.innerHTML = "<p>Seu carrinho está vazio.</p>";
+    } else {
+        carrinho.forEach(item => {
+            const quantidade = item.quantidade || 1;
+            total += (item.preco || 0) * quantidade;
+            lista.innerHTML += `
+                <div class="produto">
+                    <img src="${item.imagem || ''}" alt="${item.nome}">
+                    <div>
+                        <strong>${item.nome}</strong>
+                        <p>R$ ${formatBRL(item.preco)} x ${quantidade}</p>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    totalFinal.textContent = "Total: R$ " + formatBRL(total);
+
+    // Form submit
+    const form = document.getElementById("form-finalizar");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // validação simples
+        const nome = document.getElementById("nome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const endereco = document.getElementById("endereco").value.trim();
+        const pagamento = document.getElementById("pagamento").value;
+
+        if (!nome || !email || !endereco || !pagamento) {
+            alert("Preencha todos os campos.");
+            return;
+        }
+
+        // Simula finalização
+        alert("Compra realizada com sucesso! Obrigado por comprar na J.A.A Company.");
+
+        // limpa carrinho
+        localStorage.removeItem("carrinho");
+
+        // redireciona para index
+        window.location.href = "index.html";
+    });
+});
+</script>
+
+</body>
+</html>

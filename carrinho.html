@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Carrinho - J.A.A. Company</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .carrinho-container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .item-carrinho { display:flex; align-items:center; gap:15px; background:#f3f3f3; padding:15px; border-radius:10px; margin-bottom:15px; }
+        .item-carrinho img { width:90px; border-radius:8px; }
+        .item-info { flex:1; }
+        .item-actions { display:flex; gap:8px; align-items:center; }
+        .btn-remover { background:#c00; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+        .btn-quant { padding:6px 10px; border-radius:6px; border:1px solid #999; cursor:pointer; background:#fff; }
+        #total { font-size:22px; margin-top:20px; font-weight:bold; text-align:right; }
+        .btn-finalizar { width:100%; padding:15px; background:#222; color:#fff; border:none; border-radius:8px; cursor:pointer; margin-top:20px; }
+        .btn-finalizar:hover { background:#444; }
+    </style>
+</head>
+<body>
+
+<header><h1>Carrinho de Compras</h1></header>
+
+<div class="carrinho-container">
+    <h2>Itens no Carrinho</h2>
+    <div id="lista-carrinho"></div>
+
+    <h2 id="total">Total: R$ 0,00</h2>
+
+    <!-- botão finaliza leva para finalizar.html -->
+    <a href="finalizar.html"><button class="btn-finalizar" id="btn-finalizar">Finalizar Compra</button></a>
+</div>
+
+<script src="carrinho.js"></script>
+</body>
+</html>

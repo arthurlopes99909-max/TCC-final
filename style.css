@@ -1,0 +1,23 @@
+/* style.css - estilos básicos */
+body { margin:0; font-family: Arial, sans-serif; background:#bf1212; color:#000000; }
+header { background:#000000; color:#fff; padding:12px 20px; }
+header h1 { margin:0; display:inline-block; font-size:20px; }
+nav ul { list-style:none; margin:0; padding:0; display:flex; gap:12px; align-items:center; }
+nav li { display:inline-block; }
+nav a { color:#fff; text-decoration:none; margin-left:12px; }
+.produtos { padding:20px; }
+.grid-produtos { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+.produto { background:#fff; border:1px solid #eee; padding:12px; border-radius:8px; text-align:center; }
+.produto img { width:100%; max-width:180px; height:auto; display:block; margin:0 auto 8px; }
+.btn-carrinho { background:#222; color:#d3c7c7; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+.btn-carrinho:hover { background:#3e3c3c; }
+footer { padding:20px; text-align:center; margin-top:30px; }
+h1{
+    color: #efd8d8;
+}
+h2{
+    color: #000000;
+} 
+p{
+    color :#1a1313
+}
